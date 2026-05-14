@@ -8,11 +8,6 @@ const authRoutes = require('./authroutes');
 require('dotenv').config();
 
 const PORT = process.env.PORT||5000;
-
-
-
-
-
 app.use(cors());
 //Middleware
 app.use(express.json());
