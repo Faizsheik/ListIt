@@ -33,7 +33,7 @@ function Register() {
       const response = await AuthServices.registerUser(data);   //In this place itself, axios throws an error.
       if(response.status === 400)
       {
-p      }
+    }
       //console.log(response);
       message.success("Registered Successfully");
       navigate('/login');
@@ -45,7 +45,6 @@ p      }
       console.log("client side error:");
       console.log(err);
       message.error(err.response.data.message);
-      //message.error(getErrorMessage(err));
     }
   }
 
