@@ -2,8 +2,7 @@ import axios from 'axios';
 import { getUserDetails } from '../util/GetUser';
 
 //const SERVER_URL ="http://localhost:5000/api/todo"
-const SERVER_URL = import.meta.env.VITE_API_URL;
-
+const SERVER_URL = process.env.REACT_APP_API_URL;
 /* Why need seperate file?
 
 if we create request in each pages , if we are in production means then server 
@@ -21,23 +20,23 @@ const authHeaders = () =>
 
 const createToDo = (data) =>
 {
-    return axios.post(SERVER_URL+'/create-to-do',data,authHeaders());
+    return axios.post(SERVER_URL+'/todo/create-to-do',data,authHeaders());
 }
 
 
 const getAllToDo = (userId) =>
 {
-    return  axios.get(SERVER_URL+'/get-all-to-do/'+userId,authHeaders()); //Biggest mistake i made, instead of get , i used post
+    return  axios.get(SERVER_URL+'/todo/get-all-to-do/'+userId,authHeaders()); //Biggest mistake i made, instead of get , i used post
 }
 
 const deleteToDo = (id)=>
 {
-        return axios.delete(SERVER_URL+'/delete-to-do/'+id,authHeaders());
+        return axios.delete(SERVER_URL+'/todo/delete-to-do/'+id,authHeaders());
 }
 
 const updateToDo = (id,data) =>
 {
-    return axios.patch(SERVER_URL+'/update-to-do/'+id,data,authHeaders());
+    return axios.patch(SERVER_URL+'/todo/update-to-do/'+id,data,authHeaders());
 
 }
 const ToDoServices = 
