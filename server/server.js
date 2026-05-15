@@ -43,8 +43,11 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
+app.get('/', (req, res) => res.send("Server is up!"));
+
 app.use('/api', authRoutes);
 app.use('/api/todo', toDoRoutes);
+
 
 mongoose.connect(process.env.DB_URL)
     .then(() => console.log("✅ DB connected"))
