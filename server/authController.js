@@ -1,5 +1,4 @@
 
-const register = require('module')
 const User = require('./User')
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
@@ -21,7 +20,7 @@ async function registerUser(req,res)  //It  sends both custom messages and actua
         const duplicate = await User.find({username});
         if(duplicate && duplicate.length >0)
         {
-            return res.status(400).send({message:"User already reg bla Go and login" })
+            return res.status(400).send({message:"User already registered Go and login" })
         }
         let user = new User({firstname,lastname,username,password});
         const result = await user.save();
@@ -36,9 +35,6 @@ async function registerUser(req,res)  //It  sends both custom messages and actua
     }
     
 }
-
-
-
 
 
 async function loginUser(req,res)

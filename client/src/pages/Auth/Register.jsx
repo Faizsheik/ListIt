@@ -18,36 +18,54 @@ function Register() {
   const[error,setError] = useState();
   const[passerror,setPassError] = useState();
 
-  const handleSubmit = async () =>
-  {
+  // const handleSubmit = async () =>
+  // {
+  //   setLoading(true);
+  //   try
+  //   {
+  //     const data =
+  //     {
+  //       firstname,
+  //       lastname,
+  //       username,
+  //       password
+  //     }
+  //     const response = await AuthServices.registerUser(data);   //In this place itself, axios throws an error.
+  //     if(response.status === 400)
+  //     {
+  //   }
+  //     //console.log(response);
+  //     message.success("Registered Successfully");
+  //     navigate('/login');
+  //     setLoading(false);
+
+  //   }
+  //   catch(err)
+  //   {
+  //       const screenError = getErrorMessage(err); // Use your util!
+  //       message.error(screenError); 
+  //       console.log("Error details:", err.response?.data);
+  //       setLoading(false);
+  //   }
+  // }
+
+
+  const handleSubmit = async () => {
     setLoading(true);
-    try
-    {
-      const data =
-      {
-        firstname,
-        lastname,
-        username,
-        password
-      }
-      const response = await AuthServices.registerUser(data);   //In this place itself, axios throws an error.
-      if(response.status === 400)
-      {
-    }
-      //console.log(response);
+    try {
+      const data = { firstname, lastname, username, password };
+      const response = await AuthServices.registerUser(data);
       message.success("Registered Successfully");
       navigate('/login');
+    } catch (err) {
+      // Use your getErrorMessage util here!
+      const errorText = getErrorMessage(err);
+      message.error(errorText); 
+      console.log("Details:", err.response?.data);
+    } finally {
       setLoading(false);
-
-    }
-    catch(err)
-    {
-      console.log("client side error:");
-      console.log(err);
-      message.error(err.response.data.message);
     }
   }
-
 
   const validate = (value) => {   
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

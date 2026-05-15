@@ -10,10 +10,13 @@ willnot be localhost (different domain)it is easy change in this file only, insa
 
 */ 
 
-const authHeaders = () =>
-{
+const authHeaders = () => {
     let userToken = getUserDetails()?.token;
-    return {headers:{'Authorization':userToken}};
+    return {
+        headers: {
+            'Authorization': `Bearer ${userToken}` // Added Bearer prefix
+        }
+    };
 }
 
 
