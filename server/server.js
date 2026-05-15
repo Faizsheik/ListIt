@@ -10,7 +10,8 @@ require('dotenv').config();
 const allowedOrigins = [
    // "http://localhost:3000",
   //    "https://list-6yzuunj7a-faizsheiks-projects.vercel.app"
-   "https://list-it-chi.vercel.app"
+//    "https://list-it-chi.vercel.app"
+   "https://list-it-client.vercel.app"
 ];
 
 app.use(cors({
