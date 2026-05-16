@@ -12,10 +12,9 @@ const authenticateToken = require('./authJwt.js')
 
 router.post('/create-to-do',authenticateToken,createToDo);
 router.get('/get-all-to-do/:userId',authenticateToken,getAllToDo);
+// router.get('/get-all-to-do',authenticateToken,getAllToDo);
 router.delete('/delete-to-do/:id',authenticateToken,deleteToDo);
 router.patch('/update-to-do/:id',authenticateToken,updateToDo);
-
-
 
 // First check valid token or not 
 
