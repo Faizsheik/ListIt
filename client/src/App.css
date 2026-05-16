@@ -1,20 +1,16 @@
-:root{
-  --primary:rgb(0, 132, 255);
-  --darkPrimary:rgb(4, 110, 209);
-  --secondary:rgb(211, 233, 253);
-  --darkSecondary:rgb(185, 214, 241);
+:root {
+  --primary: rgb(0, 132, 255);
+  --darkPrimary: rgb(4, 110, 209);
+  --secondary: rgb(211, 233, 253);
+  --darkSecondary: rgb(185, 214, 241);
 }
 
-/* body{
-  margin: 0;
-  padding: 0;
-
-} */
 body {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', sans-serif;
-background-color: #111827;  color: #e5e7eb;            /* soft white text */
+  background-color: #111827;
+  color: #e5e7eb; /* Soft white text */
 }
 
 @keyframes gradientBG {
@@ -23,179 +19,231 @@ background-color: #111827;  color: #e5e7eb;            /* soft white text */
   100% { background-position: 0% 50%; }
 }
 
-
-nav {
-	position: fixed;
-	top: 0;
-	left: 0;
+/* ==========================================================================
+   Responsive Navbar Base Layout
+   ========================================================================== */
+.navbar-header {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  z-index: 100;
-  /*  */
-   background: rgba(17, 24, 39, 0.85); /* dark glass */
+  z-index: 1000;
+  background: rgba(17, 24, 39, 0.85); /* Dark glass */
   backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-sizing: border-box;
+}
 
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-	/* background-color: white; */
-	box-shadow: 0px 0.233px 8px lightgray;
+.navbar-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-left: 2rem;
-}
-
-
-.logo__wrapper img{
-  width: 30px;
-}
-
-.logo__wrapper{
-  display: flex;
-
-}
-
-.logo__wrapper h4{
-    font-weight: bold;
-    margin: 0px;
-    margin-left: 10px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-.navigation-menu{
+  padding: 0 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
   position: relative;
+  height: 64px; /* Fixed standard header height */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Logo Branded Group */
+.logo__wrapper {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+}
+
+.logo__wrapper img {
+  width: 30px;
+  height: auto;
+}
+
+.logo__wrapper h4 {
+  font-weight: bold;
+  margin: 0;
+  margin-left: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
+}
+
+/* Mobile Toggle Hamburger Icon Button */
+.menu-toggle-btn {
+  display: none; /* Invisible on standard Desktop displays */
+  background: none;
+  border: none;
+  color: #cbd5e1;
+  font-size: 1.35rem;
+  cursor: pointer;
+  padding: 8px;
+  transition: color 0.2s ease;
+  z-index: 1010;
+}
+
+.menu-toggle-btn:hover {
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Desktop Navigation Links
+   ========================================================================== */
+.navigation-menu {
+  display: flex;
   align-items: center;
   list-style: none;
   padding: 0;
   margin: 0;
-  padding-right: 2rem;
-  /*  */
-    color: #cbd5e1;   /* soft gray */
-  transition: all 0.25s ease;
-  border-radius: 6px;
+  color: #cbd5e1; /* Soft gray */
 }
-
-
-
 
 .navigation-menu li {
   position: relative;
 }
+
 .navigation-menu li a {
-    position: relative;
-    display: block;
-    text-decoration: none;
-    padding: 1rem 2rem;
-    font-size: 15px;
-    color: rgb(82, 81, 81);
-    
-  }
-
-  .navigation-menu li a:hover:not(.activeNav){
-    /* background-color: whitesmoke; */
-    /* color: var(--primary); */
-    color: #ffffff;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(6px);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-  }
-
-  .userInfoNav{
-    border: 1px solid lightgray;
-    padding: 5px 20px;
-    border-radius: 5px;
-    margin-left: 10px;
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-    font-size: 14px;
-  }
-
-  .userInfoNav img{
-    width: 30px;
-    margin-right: 5px;
-  }
-
-  .activeNav{
-    /* background-color: whitesmoke; */
-     background: rgba(59, 130, 246, 0.15);
-    color: #60a5fa !important;
-  }
-
-  .primaryText{
-    color: var(--primary);
-  }
-
-  .primaryBtn{
-    background-color: var(--primary);
-    color:white;
-    text-decoration: none;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 30px;
-    margin:1rem;
-  }
-
-
-
-  .primaryBtn:hover{
-    background-color: var(--darkPrimary);
-
-  }
-
-  .secondaryBtn{
-    background-color: var(--secondary);
-    color:var(--darkPrimary);
-    text-decoration: none;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 30px;
-    margin:1rem;
-  }
-
-  .secondaryBtn:hover{
-    background-color: var(--darkSecondary);
-  }
-
-
-
-
-/*.App {
-  text-align: center;
+  display: block;
+  text-decoration: none;
+  padding: 0 1.5rem;
+  line-height: 64px; /* Centers text perfectly to the navbar height */
+  font-size: 15px;
+  color: #cbd5e1;
+  transition: all 0.2s ease;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Hover effects for un-active nav links */
+.navigation-menu li a:hover:not(.activeNav) {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.activeNav {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa !important;
+  font-weight: 500;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* User Account Display Segment */
+.userInfoNav {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 6px 16px;
+  border-radius: 6px;
+  margin-left: 10px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.03);
+  transition: background 0.2s ease;
+}
+
+.userInfoNav:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.userInfoNav img {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+}
+
+/* ==========================================================================
+   Mobile Responsive Styles (Triggers below 768px viewports)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .navbar-container {
+    padding: 0 1.25rem;
+  }
+
+  .menu-toggle-btn {
+    display: block; /* Reveal button on mobile screens */
+  }
+
+  /* Converts layout links into a hidden vertical overlay drawer */
+  .navigation-menu {
+    position: absolute;
+    top: 64px; /* Aligns exactly flush beneath the navbar wrapper container */
+    left: 0;
+    width: 100%;
+    background-color: #1f2937; /* Clean, slightly elevated dark charcoal background */
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    
+    /* Smooth collapse animation states */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, padding 0.3s ease;
+    box-sizing: border-box;
+  }
+
+  /* Extends drop block on active click state hook */
+  .navigation-menu.show-menu {
+    max-height: 300px;
+    padding: 8px 0;
+  }
+
+  .navigation-menu li {
+    width: 100%;
+  }
+
+  .navigation-menu li a {
+    width: 100%;
+    line-height: 50px; /* Snugger line heights on responsive cell rows */
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+  }
+
+  /* Adjusts the user info box row link on compressed views */
+  .user-dropdown-item {
+    width: 100%;
+    padding: 10px 1.5rem;
+    box-sizing: border-box;
+  }
+
+  .userInfoNav {
+    margin: 0;
+    width: 100%;
+    justify-content: flex-start;
+    box-sizing: border-box;
+  }
+}
+
+/* ==========================================================================
+   Button Utilities 
+   ========================================================================== */
+.primaryText {
+  color: var(--primary);
+}
+
+.primaryBtn {
+  background-color: var(--primary);
   color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 30px;
+  margin: 1rem;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.primaryBtn:hover {
+  background-color: var(--darkPrimary);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}*/
+.secondaryBtn {
+  background-color: var(--secondary);
+  color: var(--darkPrimary);
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 30px;
+  margin: 1rem;
+  cursor: pointer;
+}
+
+.secondaryBtn:hover {
+  background-color: var(--darkSecondary);
+}

@@ -1,24 +1,73 @@
-.landing__wrapper{
-    display:flex;
-flex-wrap: wrap;
-margin-top: 100px;
-padding: 2rem;
+/* ==========================================================================
+   Mobile Layout (Default styles for phone viewports)
+   ========================================================================== */
+.landing__wrapper {
+  display: flex;
+  flex-direction: column-reverse; /* Stacks image on TOP of text on mobile for better flow */
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem 1.5rem;
+  margin-top: 80px; /* Safe spacing from the fixed mobile navbar */
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.landing__text{
-width: 40%;
+.landing__text {
+  width: 100%; /* Spans full width on mobile phone screens */
+  text-align: center;
 }
 
-.landing__text h1{
-font-size: 4rem;
+.landing__text h1 {
+  font-size: 2.2rem; /* Scaled down slightly so large text doesn't overflow mobile edges */
+  line-height: 1.3;
+  margin: 0 0 1.5rem 0;
 }
 
-.landing__img{
-width: 50%;
-margin-left: 2rem;
-
+/* Responsive Image Container */
+.landing__img {
+  width: 100%;
+  max-width: 450px; /* Keeps the landing graphic from becoming massive on mobile */
+  margin-left: 0;   /* Clears desktop left margin */
+  display: flex;
+  justify-content: center;
 }
 
-.landing__img img{
-width: 100%;
+.landing__img img {
+  width: 100%;
+  height: auto;     /* Maintains the original aspect ratio */
+  display: block;
+  object-fit: contain;
+}
+
+
+/* ==========================================================================
+   Desktop Layout (Triggers automatically on screens 768px and wider)
+   ========================================================================== */
+@media (min-width: 768px) {
+  .landing__wrapper {
+    flex-direction: row; /* Restores side-by-side layout on desktop */
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 100px auto 0 auto; /* Centers the content block on giant screens */
+    padding: 2rem;
+    gap: 0;
+  }
+
+  .landing__text {
+    width: 45%; /* Restores your original text width bounds */
+    text-align: left;
+  }
+
+  .landing__text h1 {
+    font-size: 4rem; /* Restores your original desktop font scaling */
+  }
+
+  .landing__img {
+    width: 50%; /* Restores your original graphic container width */
+    max-width: none;
+    margin-left: 2rem; /* Applies desktop gap separation safely */
+  }
 }
