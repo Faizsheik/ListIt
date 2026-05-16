@@ -240,224 +240,421 @@ const handleSearch = (e)=>
 }
 
 
-  return (
-    <div>
-      <Navbar active={"myTask"}/>
-      <section className={styles.toDoWrapper}>
+//   return (
+//     <div>
+//       <Navbar active={"myTask"}/>
+//       <section className={styles.toDoWrapper}>
 
 
-        <div className={styles.toDoHeader}>
-          <h2>Your Tasks</h2>
-          <Input style={{width:'50%'}} onChange={handleSearch}placeholder='Search Your Task here'/><br></br>
-          <div>
-            <Button type="primary"  onClick={()=>setIsAdding(true)} size="large"> Add Task</Button>
-            <Select 
-            value={currentTaskType}
-            style={{width:180,marginLeft:'10px'}}
-            onChange={handleTypeChange}
-            size="large"
+//         <div className={styles.toDoHeader}>
+//           <h2>Your Tasks</h2>
+//           <Input style={{width:'50%'}} onChange={handleSearch}placeholder='Search Your Task here'/><br></br>
+//           <div>
+//             <Button type="primary"  onClick={()=>setIsAdding(true)} size="large"> Add Task</Button>
+//             <Select 
+//             value={currentTaskType}
+//             style={{width:180,marginLeft:'10px'}}
+//             onChange={handleTypeChange}
+//             size="large"
 
-            options={[
-              {value:"incomplete",label:'Incomplete'},
-              {value:"complete",label:'Complete'}
-            ]}
+//             options={[
+//               {value:"incomplete",label:'Incomplete'},
+//               {value:"complete",label:'Complete'}
+//             ]}
 
-            />
+//             />
 
-          </div>
-        </div>
+//           </div>
+//         </div>
 
 
 
-    <Divider/>         {/* lite horizontal line - divider */}
+//     <Divider/>         {/* lite horizontal line - divider */}
     
-    <div className={styles.toDoListCardWrapper}>
+//     <div className={styles.toDoListCardWrapper}>
 
-      {filteredToDo.length>0 ? filteredToDo.map((item)=>
+//       {filteredToDo.length>0 ? filteredToDo.map((item)=>
 
-      {
+//       {
 
-        return(
+//         return(
 
-          <div key={item?._id} className={styles.toDoCard}>
+//           <div key={item?._id} className={styles.toDoCard}>
 
-            <div>
+//             <div>
 
-              <div className={styles.toDoHardHeader}>
-                 <h3>{item?.title}</h3>
+//               <div className={styles.toDoCardHeader}>
+//                  <h3>{item?.title}</h3>
                 
-                {item?.isCompleted?
-                <Tag color="cyan" >Completed</Tag> 
-                :
-                <Tag color="red">InCompleted</Tag>
-                }
+//                 {item?.isCompleted?
+//                 <Tag color="cyan" >Completed</Tag> 
+//                 :
+//                 <Tag color="red">InCompleted</Tag>
+//                 }
 
-              </div>
+//               </div>
               
-              <p>{item?.description}</p>
+//               <p>{item?.description}</p>
 
-            </div>
+//             </div>
 
 
-            <div className={styles.toDoCardFooter}>
+//             <div className={styles.toDoCardFooter}>
 
-              <Tag>{getFormattedDate(item?.createdAt)}</Tag>
-              <div className={styles.toDoFooterAction}>
-                <Tooltip title="Edit Task?">
-                  <EditOutlined onClick={()=>handleEdit(item)} className={styles.actionIcon}></EditOutlined>
-                </Tooltip>
+//               <Tag>{getFormattedDate(item?.createdAt)}</Tag>
+//               <div className={styles.toDoFooterAction}>
+//                 <Tooltip title="Edit Task?">
+//                   <EditOutlined onClick={()=>handleEdit(item)} className={styles.actionIcon}></EditOutlined>
+//                 </Tooltip>
 
-                <Tooltip title="Delete Task?">
-                  <CheckCircleFilled onClick={()=>{handleUpdateStatus(item._id,true)}} className={styles.actionIcon}/>
-                </Tooltip>
-              </div>
+//                 <Tooltip title="Delete Task?">
+//                   <CheckCircleFilled onClick={()=>{handleUpdateStatus(item._id,true)}} className={styles.actionIcon}/>
+//                 </Tooltip>
+//               </div>
 
-            </div>
-            </div>
-        )
+//             </div>
+//             </div>
+//         )
 
-      }) 
-      :
+//       }) 
+//       :
 
-      currentTodoTask.length>0 ? currentTodoTask.map((item)=>
-      {
-        return(
-          <div key={item?._id} className={styles.toDoCard}>
+//       currentTodoTask.length>0 ? currentTodoTask.map((item)=>
+//       {
+//         // return(
+//         //   <div key={item?._id} className={styles.toDoCard}>
 
-            <div>
+//         //     <div>
 
-              <div className={styles.toDoCardHeader}>
-                <h3>{item?.title}</h3>
-                {item?.isCompleted 
-                  ?
-                  <Tag color="cyan">Completed</Tag>
-                  :
-                  <Tag color="red">Incomplete</Tag>
-                }
-                <p>{item?.description}</p>
-              </div>
+//         //       <div className={styles.toDoCardHeader}>
+//         //         <h3>{item?.title}</h3>
+//         //         {item?.isCompleted 
+//         //           ?
+//         //           <Tag color="cyan">Completed</Tag>
+//         //           :
+//         //           <Tag color="red">Incomplete</Tag>
+//         //         }
+//         //         <p>{item?.description}</p>
+//         //       </div>
 
-            </div>
+//         //     </div>
 
 
    
-            <div className={styles.toDoCardFooter}>
-                 <Tag>{getFormattedDate(item?.createdAt)}</Tag>
+//         //     <div className={styles.toDoCardFooter}>
+//         //          <Tag>{getFormattedDate(item?.createdAt)}</Tag>
 
-                      <div className={styles.toDoFooterAction}>
-                        <Tooltip title="Edit Task?"><EditOutlined onClick={()=>handleEdit(item)} className={styles.actionIcon} /></Tooltip>
-                        <Tooltip title="Delete Task?"><DeleteOutlined onClick={()=>handleDelete(item)} style={{color:'red'}}   className={styles.actionIcon}/></Tooltip>
-                        {
-                              item?.isCompleted ? 
-                              <Tooltip title="Mark as Incomplete"><CheckCircleFilled onClick={()=>handleUpdateStatus(item._id,false)} style={{color:'green'}}  className={styles.actionIcon} /></Tooltip>
-                              :
-                              <Tooltip title="Mark as Completed"><CheckCircleOutlined onClick={()=>handleUpdateStatus(item._id,true)}  className={styles.actionIcon}/></Tooltip>
-                        }
-                      </div>  
-              </div>
+//         //               <div className={styles.toDoFooterAction}>
+//         //                 <Tooltip title="Edit Task?"><EditOutlined onClick={()=>handleEdit(item)} className={styles.actionIcon} /></Tooltip>
+//         //                 <Tooltip title="Delete Task?"><DeleteOutlined onClick={()=>handleDelete(item)} style={{color:'red'}}   className={styles.actionIcon}/></Tooltip>
+//         //                 {
+//         //                       item?.isCompleted ? 
+//         //                       <Tooltip title="Mark as Incomplete"><CheckCircleFilled onClick={()=>handleUpdateStatus(item._id,false)} style={{color:'green'}}  className={styles.actionIcon} /></Tooltip>
+//         //                       :
+//         //                       <Tooltip title="Mark as Completed"><CheckCircleOutlined onClick={()=>handleUpdateStatus(item._id,true)}  className={styles.actionIcon}/></Tooltip>
+//         //                 }
+//         //               </div>  
+//         //       </div>
 
-            </div>
+//         //     </div>
           
           
-        )
-      })
-      :
-      <div className={styles.noTaskWrapper}>
-        <Empty/>
+//         // )
+
+
+
+//         // added
+
+        
+//               })
+//       :
+//       <div className={styles.noTaskWrapper}>
+//         <Empty/>
+//         </div>
+// }
+//     </div>
+      
+    
+
+      
+      
+    
+    
+
+       
+       
+
+
+
+
+
+       
+       
+       
+//         {/* modal is like a pop up */}
+
+//         <Modal 
+//         confirmLoading={loading} 
+//         title="Add new To Do task" 
+//         open={isAdding}    
+//          onOk={handleSubmitTask}
+//          onCancel={()=>setIsAdding(false)}>
+
+//         <Input style={{marginBottom:'1rem'} }
+//         placeholder='Title'
+//         value={title}
+//         onChange={(e)=>setTitle(e.target.value)}
+//         />
+
+//         <Input.TextArea style={{marginBottom:'1rem'}}
+//         placeholder='Description'
+//         value={description}
+//         onChange={(e)=>setDescription(e.target.value)}
+//         />
+
+//         </Modal>
+
+
+
+//         <Modal   
+//         confirmLoading={loading}
+//         title={`Update ${currentEditItem.title}`} 
+//         open={isEditing}
+//         onOk = {handleUpdateTask}
+//         onCancel={()=>setIsEditing(false)}
+//         >
+
+//           <Input style={{marginBottom:'1rem'}}
+//           placeholder='Updated Title'
+//           value={updatedTitle}
+//           onChange={(e)=>setUpdatedTitle(e.target.value)}
+//           />
+
+//           <Input.TextArea style={{marginBottom:'1rem'}}
+//           placeholder='Updated Description'
+//           value={updatedDescription}
+//           onChange={(e)=>setUpdatedDescription(e.target.value)}
+//           />
+
+
+//           <Select 
+
+//           onChange={(value)=>setUpdatedStatus(value)}
+//           value={updatedStatus}
+//           options={
+//             [
+
+//               {
+//                 value:false,
+//                 label:'Not Completed',
+//               },
+
+//               {
+//                 value:true,
+//                 label:'Completed'
+//               }
+//             ]
+//           }
+
+//           />
+
+//         </Modal>
+
+
+//       </section>
+//     </div>
+//   )
+
+
+  // added
+    
+
+
+
+  return (
+    <div>
+      <Navbar active={"myTask"} />
+      <section className={styles.toDoWrapper}>
+
+        <div className={styles.toDoHeader}>
+          <h2>Your Tasks</h2>
+          <Input 
+            className={styles.searchInput} 
+            onChange={handleSearch} 
+            placeholder='Search Your Task here' 
+          />
+          
+          <div className={styles.actionControls}>
+            <Button 
+              type="primary" 
+              onClick={() => setIsAdding(true)} 
+              size="large" 
+              className={styles.addBtn}
+            > 
+              Add Task
+            </Button>
+            
+            <Select 
+              value={currentTaskType}
+              className={styles.statusSelect}
+              onChange={handleTypeChange}
+              size="large"
+              options={[
+                { value: "incomplete", label: 'Incomplete' },
+                { value: "complete", label: 'Complete' }
+              ]}
+            />
+          </div>
         </div>
-}
-    </div>
-      
-    
 
-      
-      
-    
-    
+        <Divider />         
+        
+        <div className={styles.toDoListCardWrapper}>
+          {filteredToDo.length > 0 ? (
+            filteredToDo.map((item) => {
+              return (
+                <div key={item?._id} className={styles.toDoCard}>
+                  <div>
+                    <div className={styles.toDoCardHeader}>
+                      <h3>{item?.title}</h3>
+                      {item?.isCompleted ? (
+                        <Tag color="cyan">Completed</Tag> 
+                      ) : (
+                        <Tag color="red">Incomplete</Tag>
+                      )}
+                    </div>
+                    <p className={styles.toDoDescription}>{item?.description}</p>
+                  </div>
 
-       
-       
+                  <div className={styles.toDoCardFooter}>
+                    <Tag className={styles.dateTag}>{getFormattedDate(item?.createdAt)}</Tag>
+                    <div className={styles.toDoFooterAction}>
+                      <Tooltip title="Edit Task?">
+                        <EditOutlined onClick={() => handleEdit(item)} className={styles.actionIcon} />
+                      </Tooltip>
+                      <Tooltip title="Complete Task?">
+                        <CheckCircleFilled onClick={() => handleUpdateStatus(item._id, true)} className={styles.actionIcon} />
+                      </Tooltip>
+                    </div>
+                  </div>
+                </div>
+              );
+            })
+          ) : currentTodoTask.length > 0 ? (
+            currentTodoTask.map((item) => {
+              return (
+                <div key={item?._id} className={styles.toDoCard}>
+                  <div>
+                    <div className={styles.toDoCardHeader}>
+                      <h3>{item?.title}</h3>
+                      {item?.isCompleted ? (
+                        <Tag color="cyan">Completed</Tag>
+                      ) : (
+                        <Tag color="red">Incomplete</Tag>
+                      )}
+                    </div>
+                    <p className={styles.toDoDescription}>{item?.description}</p>
+                  </div>
 
+                  <div className={styles.toDoCardFooter}>
+                    <Tag className={styles.dateTag}>{getFormattedDate(item?.createdAt)}</Tag>
+                    <div className={styles.toDoFooterAction}>
+                      <Tooltip title="Edit Task?">
+                        <EditOutlined onClick={() => handleEdit(item)} className={styles.actionIcon} />
+                      </Tooltip>
+                      <Tooltip title="Delete Task?">
+                        <DeleteOutlined onClick={() => handleDelete(item)} style={{ color: 'red' }} className={styles.actionIcon} />
+                      </Tooltip>
+                      {item?.isCompleted ? (
+                        <Tooltip title="Mark as Incomplete">
+                          <CheckCircleFilled onClick={() => handleUpdateStatus(item._id, false)} style={{ color: 'green' }} className={styles.actionIcon} />
+                        </Tooltip>
+                      ) : (
+                        <Tooltip title="Mark as Completed">
+                          <CheckCircleOutlined onClick={() => handleUpdateStatus(item._id, true)} className={styles.actionIcon} />
+                        </Tooltip>
+                      )}
+                    </div>  
+                  </div>
+                </div>
+              );
+            })
+          ) : (
+            <div className={styles.noTaskWrapper}>
+              <Empty />
+            </div>
+          )}
+        </div>
 
-
-
-
-       
-       
-       
-        {/* modal is like a pop up */}
-
+        {/* Add Modal */}
         <Modal 
-        confirmLoading={loading} 
-        title="Add new To Do task" 
-        open={isAdding}    
-         onOk={handleSubmitTask}
-         onCancel={()=>setIsAdding(false)}>
-
-        <Input style={{marginBottom:'1rem'} }
-        placeholder='Title'
-        value={title}
-        onChange={(e)=>setTitle(e.target.value)}
-        />
-
-        <Input.TextArea style={{marginBottom:'1rem'}}
-        placeholder='Description'
-        value={description}
-        onChange={(e)=>setDescription(e.target.value)}
-        />
-
-        </Modal>
-
-
-
-        <Modal   
-        confirmLoading={loading}
-        title={`Update ${currentEditItem.title}`} 
-        open={isEditing}
-        onOk = {handleUpdateTask}
-        onCancel={()=>setIsEditing(false)}
+          confirmLoading={loading} 
+          title="Add new To Do task" 
+          open={isAdding}    
+          onOk={handleSubmitTask}
+          onCancel={() => setIsAdding(false)}
+          width={400}
         >
+          <Input
+            style={{ marginBottom: '1rem', width: '100%' }} // Ensured width: 100%
+            placeholder='Title'
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
 
-          <Input style={{marginBottom:'1rem'}}
-          placeholder='Updated Title'
-          value={updatedTitle}
-          onChange={(e)=>setUpdatedTitle(e.target.value)}
+            style={{ 
+              marginBottom: '1rem', 
+              width: '100%',
+              display: 'block',         /* Forces the input to act as a full block element */
+              whiteSpace: 'nowrap',     /* Prevents the text inside from wrapping onto a new line */
+              overflow: 'scroll',       /* Allows you to type continuously horizontally */
+              minWidth: '100%'          /* Guarantees it doesn't shrink under flex containers */
+            }}
           />
 
-          <Input.TextArea style={{marginBottom:'1rem'}}
-          placeholder='Updated Description'
-          value={updatedDescription}
-          onChange={(e)=>setUpdatedDescription(e.target.value)}
+          <Input.TextArea 
+            style={{ marginBottom: '1rem', width: '100%' }} // Ensured width: 100%
+            placeholder='Description'
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            autoSize={{ minRows: 2, maxRows: 6 }} // Helps display cleanly on phone keyboards
           />
-
-
-          <Select 
-
-          onChange={(value)=>setUpdatedStatus(value)}
-          value={updatedStatus}
-          options={
-            [
-
-              {
-                value:false,
-                label:'Not Completed',
-              },
-
-              {
-                value:true,
-                label:'Completed'
-              }
-            ]
-          }
-
-          />
-
         </Modal>
 
+        {/* Update Modal */}
+        <Modal   
+          confirmLoading={loading}
+          title={`Update ${currentEditItem?.title || ""}`} 
+          open={isEditing}
+          onOk={handleUpdateTask}
+          onCancel={() => setIsEditing(false)}
+        >
+          <Input 
+            style={{ marginBottom: '1rem' }}
+            placeholder='Updated Title'
+            value={updatedTitle}
+            onChange={(e) => setUpdatedTitle(e.target.value)}
+          />
+          <Input.TextArea 
+            style={{ marginBottom: '1rem' }}
+            placeholder='Updated Description'
+            value={updatedDescription}
+            onChange={(e) => setUpdatedDescription(e.target.value)}
+          />
+          <Select 
+            onChange={(value) => setUpdatedStatus(value)}
+            value={updatedStatus}
+            style={{ width: '100%' }}
+            options={[
+              { value: false, label: 'Not Completed' },
+              { value: true, label: 'Completed' }
+            ]}
+          />
+        </Modal>
 
       </section>
     </div>
-  )
+  );
 }
+
 
 export default ToDoList

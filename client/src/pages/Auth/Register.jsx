@@ -137,17 +137,60 @@ const handlePasswordChange = (event) =>{
       <div className={styles.login__card}>
              <img src={login} alt="' '"/>
              <h2>Register</h2>
-             <div className={styles.input__inline__wrapper}>
+
+             {/* <div className={styles.input__wrapper}>
                   <Input placeholder="Firstname"
                   value ={firstname}
                   onChange={(e)=>setFirstname(e.target.value)}
+                   style={{
+                padding: '8px',
+                marginTop: '5px',
+                borderRadius: '4px',
+                outline: 'none',
+               
+              }}
                   />
-                  <Input placeholder="Lastname"
+               </div> */}
+
+              {/* ADDED: A responsive flex wrapper to bundle name inputs cleanly */}
+                <div className={styles.input__wrapper}>
+                  <Input 
+                    placeholder="Firstname"
+                    value={firstname}
+                    onChange={(e) => setFirstname(e.target.value)}
+                    style={{ padding: '8px', borderRadius: '4px' }}
+                  />
+                </div>
+
+                <div className={styles.input__wrapper}>
+                  <Input 
+                    placeholder="Lastname"
+                    value={lastname}
+                    onChange={(e) => setLastname(e.target.value)}
+                    style={{ padding: '8px', borderRadius: '4px' }}
+                  />
+                </div>
+
+
+
+
+
+
+
+               {/* <div className={styles.input__wrapper}>
+                 <Input placeholder="Lastname"
                   style={{ marginLeft: '10px' }}
                   value ={lastname}
                   onChange={(e)=>setLastname(e.target.value)}
+                   style={{
+                padding: '8px',
+                marginTop: '5px',
+                borderRadius: '4px',
+                outline: 'none',
+               
+              }}
                   />
-               </div>
+               </div> */}
 
 
                <div className={styles.input__wrapper}>
@@ -206,14 +249,32 @@ const handlePasswordChange = (event) =>{
 
               </div>
 
-              <div className='styles.input__info'>
+              <div className={styles.input__info}>
                 Existing User?
                  <Link to="/login">Login</Link>
               </div>
 <br></br>
               <div id="p-btn">
-              <Button loading={loading} style={{ marginTop: '20px' }}  type = "primary" size = "large" disabled={!username || !password} onClick={handleSubmit}>Register</Button>
+              <Button loading={loading} 
+                  style={{ 
+                    marginTop: '10px',
+                    // Always keep the text white
+                    color: '#ffffff', 
+                    // Always keep the primary blue background, but lower opacity when disabled
+                    backgroundColor: 'var(--primary)', 
+                    border: 'none',
+                    opacity: (!username || !password) ? 0.4 : 1,
+                    cursor: (!username || !password) ? 'not-allowed' : 'pointer'
+                  }}
+                  type="primary" 
+                  size="large" 
+                  block /* ADDED: Forces button to perfectly span the width of your card form */
+                  disabled={!username || !password} 
+                  onClick={handleSubmit}>
+                Register</Button>
               </div>
+
+              
               
 
 

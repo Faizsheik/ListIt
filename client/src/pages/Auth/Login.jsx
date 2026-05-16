@@ -186,7 +186,20 @@ const handlePasswordChange = (event) =>{
               </div><br></br>
               <div>
                 
-              <Button loading={loading}  loadingstyle={{ marginTop: '20px' }} type = "primary" size = "large" disabled={!username || !password} onClick={handleSubmit}>Login</Button>
+              <Button
+               style={{ 
+                    marginTop: '10px',
+                    // Always keep the text white
+                    color: '#ffffff', 
+                    // Always keep the primary blue background, but lower opacity when disabled
+                    backgroundColor: 'var(--primary)', 
+                    border: 'none',
+                    opacity: (!username || !password) ? 0.4 : 1,
+                    cursor: (!username || !password) ? 'not-allowed' : 'pointer'
+                  }}
+               loading={loading}  
+               loadingstyle={{ marginTop: '20px' }} 
+               type = "primary" size = "large" disabled={!username || !password} onClick={handleSubmit}>Login</Button>
               </div>
         </div>
        {/* my code */}
